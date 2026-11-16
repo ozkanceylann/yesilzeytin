@@ -31,6 +31,10 @@ a {border:0; margin: 0; padding: 0;}
 .contentE {width:100%; max-width:700px; margin:0 auto;}
 .contentE1 {width:100%; max-width:700px; }
 .mb5 {margin-bottom: -5px;}	
+
+.site-footer {background-color:#354459;color:#fff;padding:20px 10px;}
+.site-footer a,.site-footer h3,.site-footer p {color:#fff;}
+.site-footer .site-footer__copyright {margin:0;text-align:center;}
 </style>
 
 <script type="text/javascript" src="file/js/jquery-2.1.1.min.js"></script>
@@ -185,74 +189,34 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <div class="siparis_baslik center spc-b20">Yeşil Zeytin</div>
 
   
-    <div class="smart-wrap">
-    	<div class="smart-forms smart-container wrap-0">
-        
-            
-            <form method="post" id="orderForm" novalidate>
-            	<div class="form-body">
-                
-                    
-                <div class="spacer-b30">
-                    	<div class="tagline"><span> <strong>SİPARİŞ ADETİNİ SEÇİNİZ </strong></span></div>
-                    </div> 
-                   
-                    <div class="frm-row">
-                    
-                        <div class="section colm colm4">
-                        
-                            <div class="option-group field">
-<label for="adet1" class="option block"><input type="radio" name="adet" id="adet1" value="1 kg orta boy - 300 TL" checked><span class="radio"></span>1 KG ORTA BOY YEŞİL ZEYTİN &nbsp;300 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
-<label for="adet2" class="option block spacer-t10"><input type="radio" name="adet" id="adet2" value="2 kg orta boy - 500 TL"><span class="radio"></span>2 KG ORTA BOY YEŞİL ZEYTİN &nbsp;500 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
-<label for="adet3" class="option block spacer-t10"><input type="radio" name="adet" id="adet3" value="5 kg orta boy - 800 TL"><span class="radio"></span>5 KG ORTA BOY YEŞİL ZEYTİN &nbsp;800 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
-<label for="adet4" class="option block spacer-t10"><input type="radio" name="adet" id="adet4" value="10 kg orta boy - 1300 TL"><span class="radio"></span>10 KG ORTA BOY YEŞİL ZEYTİN &nbsp;1.300 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
-<label for="adet5" class="option block spacer-t10"><input type="radio" name="adet" id="adet5" value="10 kg iri boy - 1700 TL"><span class="radio"></span>10 KG İRİ BOY YEŞİL ZEYTİN &nbsp;1.700 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
+    <div class="smart-wrap"><div class="smart-forms smart-container wrap-0">
+<form method="post" id="orderForm" novalidate>
+<div class="form-body">
+<div class="spacer-b30"><div class="tagline"><span><strong>SİPARİŞ ADETİNİ SEÇİNİZ</strong></span></div></div>
+<div class="section"><div class="option-group field">
+<label for="adet1" class="option block"><input type="radio" name="adet" id="adet1" value="1 kg orta boy - 300 TL + 50 TL Kargo" data-shipping="50" data-total="350" checked><span class="radio"></span>1 KG ORTA BOY YEŞİL ZEYTİN &nbsp;300 TL<br><strong>50 TL KARGO · TOPLAM 350 TL</strong></label>
+<label for="adet2" class="option block spacer-t10"><input type="radio" name="adet" id="adet2" value="2 kg orta boy - 500 TL" data-shipping="0" data-total="500"><span class="radio"></span>2 KG ORTA BOY YEŞİL ZEYTİN &nbsp;500 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
+<label for="adet3" class="option block spacer-t10"><input type="radio" name="adet" id="adet3" value="5 kg orta boy - 800 TL" data-shipping="0" data-total="800"><span class="radio"></span>5 KG ORTA BOY YEŞİL ZEYTİN &nbsp;800 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
+<label for="adet4" class="option block spacer-t10"><input type="radio" name="adet" id="adet4" value="10 kg orta boy - 1300 TL" data-shipping="0" data-total="1300"><span class="radio"></span>10 KG ORTA BOY YEŞİL ZEYTİN &nbsp;1.300 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
+<label for="adet5" class="option block spacer-t10"><input type="radio" name="adet" id="adet5" value="10 kg iri boy - 1700 TL" data-shipping="0" data-total="1700"><span class="radio"></span>10 KG İRİ BOY YEŞİL ZEYTİN &nbsp;1.700 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
+</div></div>
+<div class="section"><label class="field-label" for="order-name">Ad Soyad</label><label class="field"><input class="gui-input" type="text" id="order-name" name="ad" autocomplete="name" maxlength="160" placeholder="Adınız ve soyadınız"></label></div>
+<div class="section"><label class="field-label" for="order-phone">Telefon</label><label class="field"><input class="gui-input" type="tel" id="order-phone" name="tel" inputmode="tel" autocomplete="tel" maxlength="15" placeholder="05XX XXX XX XX"></label></div>
+<div class="section"><label class="field-label" for="order-address">Açık Adres</label><label class="field"><textarea class="gui-textarea" id="order-address" name="adres" autocomplete="street-address" maxlength="1000" placeholder="Mahalle, cadde, sokak, bina ve daire bilgileri"></textarea></label></div>
+<div class="section"><div class="tagline"><span><strong>ÖDEME ŞEKLİNİ SEÇİNİZ</strong></span></div><div class="option-group field">
+<label class="option block" for="payment-cash"><input type="radio" name="odeme" id="payment-cash" value="0" checked><span class="radio"></span>Kapıda Nakit Ödeme</label>
+<label class="option block spacer-t10" for="payment-card"><input type="radio" name="odeme" id="payment-card" value="8"><span class="radio"></span>Kapıda Kredi Kartı İle</label>
+</div></div>
+<div class="section sozlesme"><label class="option"><input type="checkbox" name="generalTerms" id="generalTerms"><span class="checkbox"></span><span class="sozlesmeyazi"><a href="sayfalar/gizlilik-guvenlik.html">Gizlilik ve Güvenlik</a> ile <a href="sayfalar/satis-sozlesmesi.html">Satış Sözleşmesi</a>'ni okudum, anladım ve kabul ediyorum.</span></label></div>
 </div>
-            <p><strong>telefon:&nbsp;</strong>0554 247 45 00</p></div>
-            
- </div>
-
- <div class="grid__item post-large--one-third medium--one-third" >
-            <h3 class="h4">Alisveriş İşlemleri</h3>
-            
-     		<ul class="site-footer__links">
-     		<li><a href="sayfalar/odeme-teslimat.html">» Ödeme ve Teslimat</a></li>
-			<li><a href="sayfalar/gizlilik-guvenlik.html">» Gizlilik ve Güvenlik</a></li>
-			<li><a href="sayfalar/kullanim-sartlari.html">» Kullanım Şartları</a></li>
-			<li><a href="sayfalar/tuketici-yasasi.html">» Tüketici Yasası</a></li>      
-	 		</ul>
-	 
- </div>
-     
-      
- <div class="grid__item post-large--one-third medium--one-third" >
-            <h3 class="h4">Sipariş İşlemleri</h3>
-            
-     		<ul class="site-footer__links">
-     		<li><a class="fb" href="sayfalar/satis-sozlesmesi.html"><i></i>» Satış Sözleşmesi</a></li>
-			<li><a class="fb1" href="sayfalar/iptal-iade-degisim.html"><i></i>» İptal, İade, Değişim</a></li>
-			<li><a class="fb2" href="sayfalar/garanti-sartlari.html"><i></i>» Garanti Şartları</a></li>       
-	 		</ul>
-	 
- </div>
-
-
-
-  </div>
-
-  <hr class="hr--small hr--clear">
-
-  <div class="grid" style="display:block; margin-bottom: -20px; width: 100% !important">   
-    <div class=" text-center">     
-     <div class=""><p class="site-footer__links ">Copyright © FURKAN TANER</p>
-     </div>
-    </div>
-  </div>
-
-    
+<div class="form-footer"><button type="submit" class="yrmBt">SİPARİŞİ ONAYLA</button></div>
+</form></div></div>
 </div>
-
-</footer>
+<footer class="site-footer"><div class="wrapper"><div class="grid">
+<div class="grid__item"><h3 class="h4">İletişim</h3><p><strong>FURKAN TANER</strong></p><p>HÜRRİYET MAH. GIDA ÇARŞISI CAD. 4.BLOK NO: 4 İÇ KAPI NO: 7 AKHİSAR / MANİSA</p><p><a href="tel:+905542474500">0554 247 45 00</a></p></div>
+<div class="grid__item"><h3 class="h4">Alışveriş İşlemleri</h3><ul class="site-footer__links"><li><a href="sayfalar/odeme-teslimat.html">» Ödeme ve Teslimat</a></li><li><a href="sayfalar/gizlilik-guvenlik.html">» Gizlilik ve Güvenlik</a></li><li><a href="sayfalar/kullanim-sartlari.html">» Kullanım Şartları</a></li><li><a href="sayfalar/tuketici-yasasi.html">» Tüketici Yasası</a></li></ul></div>
+<div class="grid__item"><h3 class="h4">Sipariş İşlemleri</h3><ul class="site-footer__links"><li><a href="sayfalar/satis-sozlesmesi.html">» Satış Sözleşmesi</a></li><li><a href="sayfalar/iptal-iade-degisim.html">» İptal, İade, Değişim</a></li><li><a href="sayfalar/garanti-sartlari.html">» Garanti Şartları</a></li></ul></div>
+</div><hr class="hr--small hr--clear"><p class="site-footer__copyright text-center">Copyright © FURKAN TANER</p></div></footer>
 
 
 <div class="clr"></div>
@@ -325,11 +289,11 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     if(!/^05\d{9}$/.test(tel)){error.textContent="Geçerli bir cep telefonu numarası girin.";return;}
     if(!selected||!payment){error.textContent="Ürün ve ödeme seçimini yapın.";return;}
     if(!consent||!consent.checked){error.textContent="Devam etmek için sözleşme ve gizlilik onayını verin.";return;}
-    var match=selected.value.match(/([\d.]+)\s*TL/i);
-    var amount=match?parseInt(match[1].replace(/\./g,""),10):null;
-    if(amount===null||!Number.isFinite(amount)){error.textContent="Ürün fiyat bilgisi okunamadı.";return;}
+    var amount=Number(selected.dataset.total);
+    var shipping=Number(selected.dataset.shipping);
+    if(!Number.isInteger(amount)||!Number.isInteger(shipping)){error.textContent="Ürün fiyat bilgisi okunamadı.";return;}
     var paymentLabel=payment.value==="8"?"Kapıda Kredi Kartı İle":"Kapıda Nakit Ödeme";
-    var payload={ad_soyad:get("ad"),telefon:tel,sehir_ilce:null,adres:get("adres"),urun:"Yeşil Zeytin - "+selected.value,toplam_tutar:amount,odeme_sekli:paymentLabel};
+    var payload={ad_soyad:get("ad"),telefon:tel,sehir_ilce:null,adres:get("adres"),urun:"Yeşil Zeytin - "+selected.value,toplam_tutar:amount,kargo_tutar:shipping,odeme_sekli:paymentLabel};
     btn.disabled=true;btn.textContent="Gönderiliyor...";error.textContent="";
     fetch(SUPABASE_URL+"/rest/v1/web_siparisler",{method:"POST",headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY,"Content-Type":"application/json","Prefer":"return=minimal"},body:JSON.stringify(payload)})
     .then(function(r){if(!r.ok)throw new Error("http "+r.status);form.innerHTML='<h2>Siparişiniz alındı</h2><p>Sipariş bilgileriniz bize ulaştı. İsterseniz WhatsApp’tan da ulaşabilirsiniz.</p><a class="button btn-primary" style="display:block;text-align:center" target="_blank" rel="noopener" href="https://wa.me/'+PHONE+'?text='+encodeURIComponent("Yeşil Zeytin siparişim hakkında yazıyorum")+'">WhatsApp’tan yaz</a>';form.scrollIntoView({behavior:"smooth",block:"start"});})
