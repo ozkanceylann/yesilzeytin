@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700&subset=latin-ext");
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {text-decoration: none}
+
+.width {width: 35%}
+
+html,body{font:"Rajdhani",sans-serif;line-height:1.5;color:#000}body{width:100%;overflow-x:hidden}
+.text-center {text-align: center}
+
+.site-footer {background-color: #354459; padding-top: 0;padding-bottom: 20px;color: #fff;}
+.grid, .grid--rev, .grid--full, .grid-uniform { list-style: none;  margin: 0;  padding: 0;  margin-left: -30px;}
+.site-footer .grid__item {min-height: 1px; float: left; padding-left: 30px; margin-bottom: 20px; width: 32.333%; vertical-align: top;}
+.wrapper { max-width: 960px; margin: 0 auto; padding: 0 15px;}
+.grid:after, .grid--rev:after, .grid--full:after, .grid-uniform:after {content: ""; display: table; clear: both;}
+
+
+.tictacCenter .h4 { font-size: 18px; margin-top: 55px; margin-bottom: 5px; font-weight: bold; font-family: "Rajdhani",sans-serif; text-align: center}
+ul, ol { padding: 0;}
+ul, li {list-style: none;}
+li {margin-bottom: 0.25em; text-align: -webkit-match-parent;}
+
+.site-footer p, .site-footer li,  .site-footer input {font-size: 0.60em; }
+
+
+.site-footer__links a { color: #fff;}
+.site-footer p {margin-bottom: 10px;}
+
+.tictacCenter .site-footer__links { margin: 10px auto; text-align: center; position: relative; display: table;}
+.tictacCenter .site-footer__links a {font-family:"Rajdhani",sans-serif; font-weight: 500; color: #fff; font-size: 16px !important; cursor: pointer;}
+.tictacCenter .site-footer__links li { display: inline-block; padding:0 10px; cursor: pointer; }
+
+/* /// Mobil Style /// */
+
+@media(max-width:550px){
+.site-footer {padding-top: 20px;padding-bottom: 20px;}
+.grid, .grid--rev, .grid--full, .grid-uniform {list-style: none; margin: 0; padding: 0; margin-left:0;}
+
+.tictacCenter {text-align: center;}
+	
+.tictacCenter .h4 { margin-top: 30px; margin-bottom: 5px;}
+
+.tictacCenter .site-footer__links { margin: 10px auto; text-align: center; position: relative; display: table;}
+.tictacCenter .site-footer__links a {font-family:"Rajdhani",sans-serif; font-weight: 500; color: #fff; font-size: 16px !important; cursor: pointer;}
+.tictacCenter .site-footer__links li { display: inline-block; padding:0 10px; cursor: pointer; }
+
+.site-footer .grid__item {float: none; width: 100%; margin-bottom: 20px; padding-left: 0;}
+.site-footer p, .site-footer li, .site-footer .rte, .site-footer input {font-size: 0.82em; }
+.tictacCenter p {font-size: 14px !important; font-weight: 500; color: #fff; margin-bottom: 10px;}	
+	
+	
+}
