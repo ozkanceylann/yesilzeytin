@@ -36,7 +36,17 @@ a {border:0; margin: 0; padding: 0;}
 .site-footer a,.site-footer h3,.site-footer p {color:#fff;}
 .site-footer .site-footer__copyright {margin:0;text-align:center;}
 .site-banner-fixed{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:700px;z-index:10000;line-height:0;}
+.site-banner-fixed a{display:block;}
 .site-banner-fixed img{display:block;width:100%;height:auto;}
+.siparis{scroll-margin-top:100px;}
+.promo-image{position:relative;width:100%;line-height:0;}
+.promo-image>img{display:block;width:100%;height:auto;}
+.promo-order,.promo-whatsapp{position:absolute;inset:0;display:block;}
+.promo-order{z-index:1;}
+.promo-whatsapp{z-index:2;}
+.promo-full-hit,.promo-hotspot{position:absolute;display:block;}
+.promo-full-hit{inset:0;}
+.promo-hotspot{}
 .site-banner-spacer{height:min(12.5vw,87.5px);}
 </style>
 
@@ -111,16 +121,37 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <div class="content contentE">
 
 <div class="site-banner-spacer" aria-hidden="true"></div>
-<div class="site-banner-fixed"><img src="button/banner.webp" alt="Gazioğulları Yeşil Zeytin" width="700" height="88"></div>
+<div class="site-banner-fixed"><a href="#siparis" aria-label="Sipariş formuna git"><img src="button/banner.webp" alt="Gazioğulları Yeşil Zeytin" width="700" height="88"></a></div>
 
-<!-- Sayfa görsellerini zeytin-web_01.webp şeklinde numara sırasıyla ekleyin. -->
-<a href="#siparis" target="_top"><div><img src="images/zeytin-web_01.webp" width="100%" alt=""></div></a>
-<a href="#siparis" target="_top"><div><img src="images/zeytin-web_02.webp" width="100%" alt=""></div></a>
-<a href="#siparis" target="_top"><div><img src="images/zeytin-web_03.webp" width="100%" alt=""></div></a>
-<a href="#siparis" target="_top"><div><img src="images/zeytin-web_04.webp" width="100%" alt=""></div></a>
+<!-- Sayfa görselleri: WhatsApp ve sipariş görsellerindeki tıklama alanları ayrıca bağlandı. -->
+<div class="promo-image">
+  <img src="images/zeytin_web_01.webp" width="100%" alt="Gemlik siyah zeytin ve ürün bilgileri">
+  <a class="promo-order" href="#siparis" aria-label="Sipariş formuna git"><span class="promo-full-hit"></span></a>
+  <a class="promo-whatsapp" href="https://wa.me/905542474500?text=Ye%C5%9Fil%20Zeytin%20sipari%C5%9Fi%20vermek%20istiyorum" target="_blank" rel="noopener" aria-label="WhatsApp'tan sipariş ver"><span class="promo-hotspot" style="left:65%;top:92.2%;width:33%;height:6.8%;"></span></a>
+</div>
+<div class="promo-image">
+  <img src="images/zeytin_web_02.webp" width="100%" alt="Zeytin ve zeytinyağı ürün tanıtımı">
+  <a class="promo-order" href="#siparis" aria-label="Sipariş formuna git"><span class="promo-full-hit"></span></a>
+  
+</div>
+<div class="promo-image">
+  <img src="images/zeytin_web_03.webp" width="100%" alt="Yeşil zeytin siparişi ve kapıda ödeme bilgileri">
+  <a class="promo-order" href="#siparis" aria-label="Sipariş formuna git"><span class="promo-hotspot" style="left:1%;top:30.2%;width:97%;height:5%;"></span></a>
+  <a class="promo-whatsapp" href="https://wa.me/905542474500?text=Ye%C5%9Fil%20Zeytin%20sipari%C5%9Fi%20vermek%20istiyorum" target="_blank" rel="noopener" aria-label="WhatsApp'tan sipariş ver"><span class="promo-hotspot" style="left:64%;top:24.8%;width:34%;height:5.2%;"></span></a>
+</div>
+<div class="promo-image">
+  <img src="images/zeytin_web_04.webp" width="100%" alt="Soğuk sıkım zeytinyağı ve Gemlik zeytini">
+  <a class="promo-order" href="#siparis" aria-label="Sipariş formuna git"><span class="promo-full-hit"></span></a>
+  
+</div>
+<div class="promo-image">
+  <img src="images/zeytin_web_05.webp" width="100%" alt="Doğal zeytinler ve sipariş bilgileri">
+  <a class="promo-order" href="#siparis" aria-label="Sipariş formuna git"><span class="promo-hotspot" style="left:2%;top:24%;width:96%;height:5.2%;"></span></a>
+  <a class="promo-whatsapp" href="https://wa.me/905542474500?text=Ye%C5%9Fil%20Zeytin%20sipari%C5%9Fi%20vermek%20istiyorum" target="_blank" rel="noopener" aria-label="WhatsApp'tan sipariş ver"><span class="promo-hotspot" style="left:64%;top:75.7%;width:34%;height:5.8%;"></span></a>
+</div>
 
-<div style="position: fixed;bottom: 0;max-width: 700px;z-index: 9999;">
-	<div style="postion:relative">
+<div style="position: fixed;bottom: 0;left:50%;transform:translateX(-50%);width:100%;max-width:700px;z-index:9999;">
+	<div style="position:relative">
 		<a href="#siparis"><div style="position:absolute;top:0;left:0;width:50%;height:100%;"></div></a>
 		<a href="https://wa.me/905542474500?text=Ye%C5%9Fil%20Zeytin%20sipari%C5%9Fi%20vermek%20istiyorum" target="_top"><div style="position:absolute;top:0;left:50%;width:50%;height:100%;z-index:9999999999999;"></div></a>
 		<img src="images/salca-web_36.jpg" width="100%">
@@ -130,11 +161,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 
 
 
-<div style="position: relative; top: -18px; ">
-<a name="siparis"> &nbsp; </a>
-</div>
-
-<div class=" siparis" style="position: relative; z-index: 90; background-color: #FFFFFF">
+<div class="siparis" id="siparis" style="position: relative; z-index: 90; background-color: #FFFFFF">
 <div class="siparis_baslik center spc-b20">Yeşil Zeytin</div>
 
   
