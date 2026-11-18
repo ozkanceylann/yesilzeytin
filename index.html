@@ -152,7 +152,25 @@ a {border:0; margin: 0; padding: 0;}
     font-size: 12px;
 }
 .sozlesme { padding: 12px 4px 8px; }
-.sozlesmeyazi { font-size: 14px; line-height: 1.5; }
+.sozlesme .option {
+    display: flex !important;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    padding-right: 0;
+}
+.sozlesme .option > input {
+    left: 0;
+    top: 0;
+    width: 21px;
+    height: 21px;
+}
+.sozlesme .option .checkbox {
+    flex: 0 0 21px;
+    top: 2px;
+    margin: 0;
+}
+.sozlesmeyazi { flex: 1; font-size: 14px; line-height: 1.5; }
 .sozlesmeyazi a { color: #3a74a5; font-weight: 700; }
 .smart-forms .form-footer { padding: 12px 0 22px; background: #fff; }
 .smart-forms .form-footer .yrmBt {
@@ -180,7 +198,15 @@ a {border:0; margin: 0; padding: 0;}
     grid-template-columns: 1fr 1.15fr 1fr;
     gap: 18px;
 }
-.footer-grid .grid__item { min-width: 0; }
+.site-footer .footer-grid { width: 100%; margin: 0; padding: 0; }
+.site-footer .footer-grid .grid__item {
+    float: none;
+    width: auto;
+    min-width: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    vertical-align: top;
+}
 .footer-grid h3 { margin: 0 0 12px; font-size: 16px; font-weight: 700; }
 .footer-grid p { margin: 0 0 8px; font-size: 14px; line-height: 1.45; }
 @media (max-width: 560px) {
@@ -298,14 +324,14 @@ a {border:0; margin: 0; padding: 0;}
 </div>
 <footer class="site-footer">
   <div class="wrapper">
-    <div class="grid footer-grid">
+    <div class="footer-grid">
       <div class="grid__item">
         <h3 class="h4">Hakkımızda</h3>
         <ul class="site-footer__links">
           <li><a href="sayfalar/hakkimizda.html">» Hakkımızda</a></li>
           <li><a href="sayfalar/iletisim.html">» İletişim</a></li>
         </ul>
-        <p><a href="tel:+905542474500">Telefon: 0554 247 45 00</a></p>
+        <p><a href="tel:+905542474500">Telefon: 0554 247 45 00</a></p>\n        <p>HÜRRİYET MAH. GIDA ÇARŞISI CAD. 4. BLOK NO: 4 İÇ KAPI NO: 7 AKHİSAR / MANİSA</p>
       </div>
       <div class="grid__item">
         <h3 class="h4">Alışveriş İşlemleri</h3>
@@ -326,7 +352,7 @@ a {border:0; margin: 0; padding: 0;}
       </div>
     </div>
     <hr class="hr--small hr--clear">
-    <p class="site-footer__copyright text-center">Copyright © FURKAN TANER · HÜRRİYET MAH. GIDA ÇARŞISI CAD. 4.BLOK NO: 4 İÇ KAPI NO: 7 AKHİSAR / MANİSA</p>
+    <p class="site-footer__copyright text-center">Copyright © FURKAN TANER</p>
   </div>
 </footer>
 
