@@ -82,20 +82,112 @@ a {border:0; margin: 0; padding: 0;}
 <style>
 
 .siparis {
-    border: #faa224 solid 6px;
+    border: 6px solid #faa224;
+    background: #fff;
 }
-
 .siparis_baslik {
+    margin: 0;
     background: #faa224;
     color: #fff;
-    padding: 5px;
+    padding: 12px 8px;
     font-family: 'Dosis', serif;
-    font-size: 38px;
+    font-size: 34px;
+    font-weight: 700;
 }
-
 .smart-forms .switch, .smart-forms .option, .smart-forms .field-label {
     font-size: 15px;
     font-weight: 500;
+}
+.smart-forms .form-body { padding: 0 10px; }
+.checkout-section { padding: 14px 4px 2px; }
+.checkout-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 8px 0 26px;
+    color: #333;
+    font-family: 'Dosis', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+.checkout-divider::before, .checkout-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #bd675b;
+}
+.delivery-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 18px;
+}
+.delivery-fields .section { margin: 0; }
+.delivery-fields .address-field { grid-column: 1 / -1; }
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+.smart-forms .gui-input, .smart-forms .gui-textarea {
+    min-height: 44px;
+    border: 1px solid #cfcfcf;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 15px;
+}
+.smart-forms .gui-textarea { min-height: 92px; padding-top: 12px; }
+.address-note {
+    padding: 9px 10px;
+    border: 1px solid #d8d8d8;
+    border-top: 0;
+    background: #f4f4f4;
+    color: #888;
+    font-size: 12px;
+}
+.sozlesme { padding: 12px 4px 8px; }
+.sozlesmeyazi { font-size: 14px; line-height: 1.5; }
+.sozlesmeyazi a { color: #3a74a5; font-weight: 700; }
+.smart-forms .form-footer { padding: 12px 0 22px; background: #fff; }
+.smart-forms .form-footer .yrmBt {
+    display: block;
+    width: 78%;
+    min-height: 52px;
+    margin: 0 auto;
+    border: 0;
+    border-radius: 0;
+    background: #f00;
+    color: #fff;
+    font-family: 'Dosis', Arial, sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+}
+.site-footer { background-color: #354459; color: #fff; padding: 28px 18px 18px; }
+.site-footer a, .site-footer h3, .site-footer p { color: #fff; }
+.site-footer a { text-decoration: none; }
+.site-footer__links { margin: 0; padding: 0; list-style: none; }
+.site-footer__links li { margin: 0 0 7px; }
+.site-footer__links a { font-size: 14px; }
+.site-footer__copyright { margin: 0; text-align: center; }
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    gap: 18px;
+}
+.footer-grid .grid__item { min-width: 0; }
+.footer-grid h3 { margin: 0 0 12px; font-size: 16px; font-weight: 700; }
+.footer-grid p { margin: 0 0 8px; font-size: 14px; line-height: 1.45; }
+@media (max-width: 560px) {
+    .delivery-fields { grid-template-columns: 1fr; }
+    .delivery-fields .address-field { grid-column: auto; }
+    .smart-forms .form-footer .yrmBt { width: 92%; font-size: 22px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 18px; }
 }
 
 </style>
@@ -166,43 +258,77 @@ a {border:0; margin: 0; padding: 0;}
 
 
 
-<div class="siparis" id="siparis" style="position: relative; z-index: 90; background-color: #FFFFFF">
-<div class="siparis_baslik center spc-b20">Yeşil Zeytin</div>
-<div class="preorder-info" style="padding:12px 16px;background:#f6f7f2;color:#333;font-size:14px;line-height:1.55">
-<strong>Satıcı:</strong> FURKAN TANER · HÜRRİYET MAH. GIDA ÇARŞISI CAD. 4. BLOK NO: 4 İÇ KAPI NO: 7 AKHİSAR / MANİSA · <a href="tel:+905542474500">0554 247 45 00</a><br>
-Ürün ve kargo toplamı seçiminize göre aşağıda gösterilir. Ödeme kapıda nakit veya kapıda kredi kartıyla yapılır. <a href="sayfalar/odeme-teslimat.html">Ödeme ve teslimat</a> · <a href="sayfalar/iptal-iade-degisim.html">Cayma ve iade bilgisi</a>
+<div class="siparis" id="siparis" style="position:relative;z-index:90;background:#fff">
+  <div class="siparis_baslik center">Yeşil Zeytin</div>
+  <div class="smart-wrap">
+    <div class="smart-forms smart-container wrap-0">
+      <form method="post" id="orderForm" novalidate>
+        <div class="form-body">
+          <div class="checkout-section">
+            <div class="checkout-divider"><span>SİPARİŞ ADETİNİ SEÇİNİZ</span></div>
+            <div class="section"><div class="option-group field">
+              <label for="adet1" class="option block"><input type="radio" name="adet" id="adet1" value="1 kg orta boy - 300 TL + 50 TL Kargo" data-shipping="50" data-total="350" checked><span class="radio"></span>1 KG ORTA BOY YEŞİL ZEYTİN &nbsp;300 TL<br><strong>50 TL KARGO · TOPLAM 350 TL</strong></label>
+              <label for="adet2" class="option block spacer-t10"><input type="radio" name="adet" id="adet2" value="2 kg orta boy - 500 TL" data-shipping="0" data-total="500"><span class="radio"></span>2 KG ORTA BOY YEŞİL ZEYTİN &nbsp;500 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
+              <label for="adet3" class="option block spacer-t10"><input type="radio" name="adet" id="adet3" value="5 kg orta boy - 800 TL" data-shipping="0" data-total="800"><span class="radio"></span>5 KG ORTA BOY YEŞİL ZEYTİN &nbsp;800 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
+              <label for="adet4" class="option block spacer-t10"><input type="radio" name="adet" id="adet4" value="10 kg orta boy - 1300 TL" data-shipping="0" data-total="1300"><span class="radio"></span>10 KG ORTA BOY YEŞİL ZEYTİN &nbsp;1.300 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
+              <label for="adet5" class="option block spacer-t10"><input type="radio" name="adet" id="adet5" value="10 kg iri boy - 1700 TL" data-shipping="0" data-total="1700"><span class="radio"></span>10 KG İRİ BOY YEŞİL ZEYTİN &nbsp;1.700 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
+            </div></div>
+          </div>
+          <div class="checkout-section">
+            <div class="checkout-divider"><span>ÖDEME ŞEKLİNİ SEÇİNİZ</span></div>
+            <div class="section"><div class="option-group field">
+              <label class="option block" for="payment-cash"><input type="radio" name="odeme" id="payment-cash" value="0" checked><span class="radio"></span>Kapıda Nakit Ödeme</label>
+              <label class="option block spacer-t10" for="payment-card"><input type="radio" name="odeme" id="payment-card" value="8"><span class="radio"></span>Kapıda Kredi Kartı İle</label>
+            </div></div>
+          </div>
+          <div class="checkout-section">
+            <div class="checkout-divider"><span>TESLİMAT BİLGİLERİNİ GİRİNİZ</span></div>
+            <div class="delivery-fields">
+              <div class="section"><label class="sr-only" for="order-name">Adınız Soyadınız</label><label class="field"><input class="gui-input" type="text" id="order-name" name="ad" autocomplete="name" maxlength="160" placeholder="Adınız Soyadınız"></label></div>
+              <div class="section"><label class="sr-only" for="order-phone">Telefon Numaranız</label><label class="field"><input class="gui-input" type="tel" id="order-phone" name="tel" inputmode="tel" autocomplete="tel" maxlength="15" placeholder="Telefon Numaranız"></label></div>
+              <div class="section address-field"><label class="sr-only" for="order-address">Adresiniz</label><label class="field"><textarea class="gui-textarea" id="order-address" name="adres" autocomplete="street-address" maxlength="1000" placeholder="Adresiniz"></textarea><div class="address-note">Not: Lütfen adresinizi eksiksiz bir şekilde yazınız...</div></label></div>
+            </div>
+          </div>
+          <div class="section sozlesme"><label class="option"><input type="checkbox" name="generalTerms" id="generalTerms"><span class="checkbox"></span><span class="sozlesmeyazi"><a href="sayfalar/gizlilik-guvenlik.html">Gizlilik ve Güvenlik Bilgilendirmesi</a>'ni okudum; <a href="sayfalar/satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a>'ni kabul ediyorum.</span></label></div>
+        </div>
+        <div class="form-footer"><button type="submit" class="yrmBt">SİPARİŞİ ONAYLA</button></div>
+      </form>
+    </div>
+  </div>
 </div>
-
-  
-    <div class="smart-wrap"><div class="smart-forms smart-container wrap-0">
-<form method="post" id="orderForm" novalidate>
-<div class="form-body">
-<div class="spacer-b30"><div class="tagline"><span><strong>SİPARİŞ ADETİNİ SEÇİNİZ</strong></span></div></div>
-<div class="section"><div class="option-group field">
-<label for="adet1" class="option block"><input type="radio" name="adet" id="adet1" value="1 kg orta boy - 300 TL + 50 TL Kargo" data-shipping="50" data-total="350" checked><span class="radio"></span>1 KG ORTA BOY YEŞİL ZEYTİN &nbsp;300 TL<br><strong>50 TL KARGO · TOPLAM 350 TL</strong></label>
-<label for="adet2" class="option block spacer-t10"><input type="radio" name="adet" id="adet2" value="2 kg orta boy - 500 TL" data-shipping="0" data-total="500"><span class="radio"></span>2 KG ORTA BOY YEŞİL ZEYTİN &nbsp;500 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
-<label for="adet3" class="option block spacer-t10"><input type="radio" name="adet" id="adet3" value="5 kg orta boy - 800 TL" data-shipping="0" data-total="800"><span class="radio"></span>5 KG ORTA BOY YEŞİL ZEYTİN &nbsp;800 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
-<label for="adet4" class="option block spacer-t10"><input type="radio" name="adet" id="adet4" value="10 kg orta boy - 1300 TL" data-shipping="0" data-total="1300"><span class="radio"></span>10 KG ORTA BOY YEŞİL ZEYTİN &nbsp;1.300 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
-<label for="adet5" class="option block spacer-t10"><input type="radio" name="adet" id="adet5" value="10 kg iri boy - 1700 TL" data-shipping="0" data-total="1700"><span class="radio"></span>10 KG İRİ BOY YEŞİL ZEYTİN &nbsp;1.700 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
-</div></div>
-<div class="section"><label class="field-label" for="order-name">Ad Soyad</label><label class="field"><input class="gui-input" type="text" id="order-name" name="ad" autocomplete="name" maxlength="160" placeholder="Adınız ve soyadınız"></label></div>
-<div class="section"><label class="field-label" for="order-phone">Telefon</label><label class="field"><input class="gui-input" type="tel" id="order-phone" name="tel" inputmode="tel" autocomplete="tel" maxlength="15" placeholder="05XX XXX XX XX"></label></div>
-<div class="section"><label class="field-label" for="order-address">Açık Adres</label><label class="field"><textarea class="gui-textarea" id="order-address" name="adres" autocomplete="street-address" maxlength="1000" placeholder="Mahalle, cadde, sokak, bina ve daire bilgileri"></textarea></label></div>
-<div class="section"><div class="tagline"><span><strong>ÖDEME ŞEKLİNİ SEÇİNİZ</strong></span></div><div class="option-group field">
-<label class="option block" for="payment-cash"><input type="radio" name="odeme" id="payment-cash" value="0" checked><span class="radio"></span>Kapıda Nakit Ödeme</label>
-<label class="option block spacer-t10" for="payment-card"><input type="radio" name="odeme" id="payment-card" value="8"><span class="radio"></span>Kapıda Kredi Kartı İle</label>
-</div></div>
-<div class="section sozlesme"><label class="option"><input type="checkbox" name="generalTerms" id="generalTerms"><span class="checkbox"></span><span class="sozlesmeyazi"><a href="sayfalar/gizlilik-guvenlik.html">Gizlilik ve Güvenlik Bilgilendirmesi</a>'ni okudum; <a href="sayfalar/satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a>'ni kabul ediyorum.</span></label></div>
-</div>
-<div class="form-footer"><button type="submit" class="yrmBt">SİPARİŞİ ONAYLA</button></div>
-</form></div></div>
-</div>
-<footer class="site-footer"><div class="wrapper"><div class="grid">
-<div class="grid__item"><h3 class="h4">İletişim</h3><p><strong>FURKAN TANER</strong></p><p>HÜRRİYET MAH. GIDA ÇARŞISI CAD. 4.BLOK NO: 4 İÇ KAPI NO: 7 AKHİSAR / MANİSA</p><p><a href="tel:+905542474500">0554 247 45 00</a></p></div>
-<div class="grid__item"><h3 class="h4">Alışveriş İşlemleri</h3><ul class="site-footer__links"><li><a href="sayfalar/odeme-teslimat.html">» Ödeme ve Teslimat</a></li><li><a href="sayfalar/gizlilik-guvenlik.html">» Gizlilik ve Güvenlik</a></li><li><a href="sayfalar/kullanim-sartlari.html">» Kullanım Şartları</a></li><li><a href="sayfalar/tuketici-yasasi.html">» Tüketici Yasası</a></li></ul></div>
-<div class="grid__item"><h3 class="h4">Sipariş İşlemleri</h3><ul class="site-footer__links"><li><a href="sayfalar/satis-sozlesmesi.html">» Satış Sözleşmesi</a></li><li><a href="sayfalar/iptal-iade-degisim.html">» İptal, İade, Değişim</a></li><li><a href="sayfalar/garanti-sartlari.html">» Garanti Şartları</a></li></ul></div>
-</div><hr class="hr--small hr--clear"><p class="site-footer__copyright text-center">Copyright © FURKAN TANER</p></div></footer>
-
+<footer class="site-footer">
+  <div class="wrapper">
+    <div class="grid footer-grid">
+      <div class="grid__item">
+        <h3 class="h4">Hakkımızda</h3>
+        <ul class="site-footer__links">
+          <li><a href="sayfalar/hakkimizda.html">» Hakkımızda</a></li>
+          <li><a href="sayfalar/iletisim.html">» İletişim</a></li>
+        </ul>
+        <p><a href="tel:+905542474500">Telefon: 0554 247 45 00</a></p>
+      </div>
+      <div class="grid__item">
+        <h3 class="h4">Alışveriş İşlemleri</h3>
+        <ul class="site-footer__links">
+          <li><a href="sayfalar/odeme-teslimat.html">» Ödeme ve Teslimat</a></li>
+          <li><a href="sayfalar/gizlilik-guvenlik.html">» Gizlilik ve Güvenlik</a></li>
+          <li><a href="sayfalar/kullanim-sartlari.html">» Kullanım Şartları</a></li>
+          <li><a href="sayfalar/tuketici-yasasi.html">» Tüketici Yasası</a></li>
+        </ul>
+      </div>
+      <div class="grid__item">
+        <h3 class="h4">Sipariş İşlemleri</h3>
+        <ul class="site-footer__links">
+          <li><a href="sayfalar/satis-sozlesmesi.html">» Satış Sözleşmesi</a></li>
+          <li><a href="sayfalar/iptal-iade-degisim.html">» İptal, İade, Değişim</a></li>
+          <li><a href="sayfalar/garanti-sartlari.html">» Garanti Şartları</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="hr--small hr--clear">
+    <p class="site-footer__copyright text-center">Copyright © FURKAN TANER · HÜRRİYET MAH. GIDA ÇARŞISI CAD. 4.BLOK NO: 4 İÇ KAPI NO: 7 AKHİSAR / MANİSA</p>
+  </div>
+</footer>
 
 <div class="clr"></div>
 </div>
