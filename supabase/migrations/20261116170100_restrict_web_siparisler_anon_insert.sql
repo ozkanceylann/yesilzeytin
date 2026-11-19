@@ -1,10 +1,10 @@
 alter table public.web_siparisler
   add constraint web_siparisler_web_catalog_check check (
-    (urun = 'Yeşil Zeytin - 1 kg orta boy - 300 TL' and toplam_tutar = 300)
-    or (urun = 'Yeşil Zeytin - 2 kg orta boy - 500 TL' and toplam_tutar = 500)
-    or (urun = 'Yeşil Zeytin - 5 kg orta boy - 800 TL' and toplam_tutar = 800)
-    or (urun = 'Yeşil Zeytin - 10 kg orta boy - 1300 TL' and toplam_tutar = 1300)
-    or (urun = 'Yeşil Zeytin - 10 kg iri boy - 1700 TL' and toplam_tutar = 1700)
+    (urun = 'Zeytin - 1 kg orta boy - 300 TL' and toplam_tutar = 300)
+    or (urun = 'Zeytin - 2 kg orta boy - 500 TL' and toplam_tutar = 500)
+    or (urun = 'Zeytin - 5 kg orta boy - 800 TL' and toplam_tutar = 800)
+    or (urun = 'Zeytin - 10 kg orta boy - 1300 TL' and toplam_tutar = 1300)
+    or (urun = 'Zeytin - 10 kg iri boy - 1700 TL' and toplam_tutar = 1700)
   );
 revoke insert on public.web_siparisler from public, anon, authenticated;
 grant insert (ad_soyad, telefon, sehir_ilce, adres, urun, toplam_tutar, odeme_sekli)
