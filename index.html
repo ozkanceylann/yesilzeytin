@@ -276,6 +276,7 @@ a {border:0; margin: 0; padding: 0;}
               <label for="adet3" class="option block spacer-t10"><input type="radio" name="adet" id="adet3" value="5 kg orta boy - 800 TL" data-shipping="0" data-total="800"><span class="radio"></span>5 KG ORTA BOY ZEYTİN &nbsp;800 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
               <label for="adet4" class="option block spacer-t10"><input type="radio" name="adet" id="adet4" value="10 kg orta boy - 1300 TL" data-shipping="0" data-total="1300"><span class="radio"></span>10 KG ORTA BOY ZEYTİN &nbsp;1.300 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
               <label for="adet5" class="option block spacer-t10"><input type="radio" name="adet" id="adet5" value="10 kg iri boy - 1700 TL" data-shipping="0" data-total="1700"><span class="radio"></span>10 KG İRİ BOY ZEYTİN &nbsp;1.700 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
+              <label for="adet6" class="option block spacer-t10"><input type="radio" name="adet" id="adet6" value="5 litre soğuk sıkım premium zeytinyağı - 1700 TL" data-product="Zeytinyağı" data-shipping="0" data-total="1700"><span class="radio"></span>5 LİTRE SOĞUK SIKIM PREMIUM YAĞ &nbsp;1.700 TL<br><strong>KARGO ÜCRETSİZ</strong></label>
             </div></div>
           </div>
           <div class="checkout-section">
@@ -409,7 +410,7 @@ a {border:0; margin: 0; padding: 0;}
     var shipping=Number(selected.dataset.shipping);
     if(!Number.isInteger(amount)||!Number.isInteger(shipping)){error.textContent="Ürün fiyat bilgisi okunamadı.";return;}
     var paymentLabel=payment.value==="8"?"Kapıda Kredi Kartı İle":"Kapıda Nakit Ödeme";
-    var payload={ad_soyad:get("ad"),telefon:tel,sehir_ilce:null,adres:get("adres"),urun:"Zeytin - "+selected.value,toplam_tutar:amount,kargo_tutar:shipping,odeme_sekli:paymentLabel};
+    var payload={ad_soyad:get("ad"),telefon:tel,sehir_ilce:null,adres:get("adres"),urun:(selected.dataset.product||"Zeytin")+" - "+selected.value,toplam_tutar:amount,kargo_tutar:shipping,odeme_sekli:paymentLabel};
     btn.disabled=true;btn.textContent="Gönderiliyor...";error.textContent="";
     fetch(SUPABASE_URL+"/rest/v1/web_siparisler",{method:"POST",headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY,"Content-Type":"application/json","Prefer":"return=minimal"},body:JSON.stringify(payload)})
     .then(function(r){if(!r.ok)throw new Error("http "+r.status);form.innerHTML='<h2>Siparişiniz alındı</h2><p>Sipariş bilgileriniz bize ulaştı. İsterseniz WhatsApp’tan da ulaşabilirsiniz.</p><a class="button btn-primary" style="display:block;text-align:center" target="_blank" rel="noopener" href="https://wa.me/'+PHONE+'?text='+encodeURIComponent("Zeytin siparişim hakkında yazıyorum")+'">WhatsApp’tan yaz</a>';form.scrollIntoView({behavior:"smooth",block:"start"});})
