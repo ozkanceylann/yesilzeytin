@@ -523,7 +523,7 @@ src="https://www.facebook.com/tr?id=1817216362901103&ev=PageView&noscript=1"
       option.type="button";
       option.setAttribute("role","option");
       option.textContent=name;
-      option.addEventListener("pointerdown",function(event){event.preventDefault();});
+      option.addEventListener("mousedown",function(event){event.preventDefault();});
       option.addEventListener("click",function(){onSelect(name);closeSuggestions(input,box);});
       box.appendChild(option);
     });
