@@ -502,7 +502,7 @@ src="https://www.facebook.com/tr?id=1817216362901103&ev=PageView&noscript=1"
   var selectedDistrict="";
   var districtOptions=[];
   function normalizePlace(value){
-    return String(value||"").trim().normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").toLocaleLowerCase("tr-TR").replace(/ı/g,"i");
+    return String(value||"").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ı/g,"i");
   }
   function closeSuggestions(input,box){
     box.hidden=true;
