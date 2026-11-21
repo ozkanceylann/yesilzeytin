@@ -172,6 +172,32 @@ src="https://www.facebook.com/tr?id=1817216362901103&ev=PageView&noscript=1"
     font-size: 15px;
 }
 .smart-forms .gui-textarea { min-height: 92px; padding-top: 12px; }
+
+/* Sipariş verenin ad soyad ve telefon alanları */
+#order-name, #order-phone {
+    min-height: 50px;
+    padding: 10px 12px;
+    border: 2px solid #a8b1a8;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #222;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    font-size: 16px;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+#order-name:focus, #order-phone:focus {
+    border-color: #4d7b50;
+    box-shadow: 0 0 0 3px rgba(77,123,80,.16);
+    outline: 0;
+}
+#order-name::placeholder, #order-phone::placeholder {
+    color: #929292;
+    opacity: 1;
+}
+#order-name:focus::placeholder, #order-phone:focus::placeholder {
+    color: #a6a6a6;
+}
+
 .address-note {
     padding: 9px 10px;
     border: 1px solid #d8d8d8;
