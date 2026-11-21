@@ -596,7 +596,7 @@ src="https://www.facebook.com/tr?id=1817216362901103&ev=PageView&noscript=1"
     var unique=new Map();
     function score(row){
       var code=String(row.code??"").trim();
-      return (/^\\d{2}$/.test(code)?2:0)+(/^\\d{2}-/.test(String(row.id??""))?1:0);
+      return (/^\d{2}$/.test(code)?2:0)+(/^\d{2}-/.test(String(row.id??""))?1:0);
     }
     (rows||[]).forEach(function(row){
       var key=String(row.city_id)+"|"+normalizePlace(row.name);
