@@ -600,9 +600,33 @@ src="https://www.facebook.com/tr?id=1817216362901103&ev=PageView&noscript=1"
     if(!Number.isInteger(amount)||!Number.isInteger(shipping)){error.textContent="Ürün fiyat bilgisi okunamadı.";return;}
     var paymentLabel=payment.value==="8"?"Kapıda Kredi Kartı İle":"Kapıda Nakit Ödeme";
     var payload={ad_soyad:get("ad"),telefon:tel,sehir_ilce:province+" / "+district,adres:get("adres"),urun:(selected.dataset.product||"Yeşil Zeytin")+" - "+selected.value,toplam_tutar:amount,kargo_tutar:shipping,odeme_sekli:paymentLabel,kargo_kg:Number(selected.dataset.weight||5),kargo_adet:selected.dataset.parcels||"1"};
+    var receiptToken="";
+    try{receiptToken=window.crypto&&window.crypto.randomUUID?window.crypto.randomUUID():"";}catch(ignore){}
+    if(!receiptToken){error.textContent="Sipariş bilgilerini güvenli şekilde göstermek için tarayıcınızı güncelleyin.";return;}
+    payload.receipt_token=receiptToken;
     btn.disabled=true;btn.textContent="Gönderiliyor...";error.textContent="";
+    function loadReceipt(attempt){
+      return fetch(SUPABASE_URL+"/rest/v1/rpc/get_web_order_receipt",{method:"POST",headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY,"Content-Type":"application/json"},body:JSON.stringify({p_receipt_token:receiptToken})})
+      .then(function(r){if(!r.ok)throw new Error("receipt "+r.status);return r.json();})
+      .then(function(data){var value=Array.isArray(data)?data[0]:data;if(value&&value.siparis_no!=null)return value;if(attempt<4)return new Promise(function(resolve){setTimeout(resolve,350);}).then(function(){return loadReceipt(attempt+1);});return value||null;})
+      .catch(function(){if(attempt<4)return new Promise(function(resolve){setTimeout(resolve,350);}).then(function(){return loadReceipt(attempt+1);});return null;});
+    }
+    function escapeHtml(value){return String(value==null?"":value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
     fetch(SUPABASE_URL+"/rest/v1/web_siparisler",{method:"POST",headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY,"Content-Type":"application/json","Prefer":"return=minimal"},body:JSON.stringify(payload)})
-    .then(function(r){if(!r.ok)throw new Error("http "+r.status);if(window.fbq){window.fbq("track","Purchase",{value:amount,currency:"TRY"});}form.innerHTML='<h2>Siparişiniz alındı</h2><p>Sipariş bilgileriniz bize ulaştı. İsterseniz WhatsApp’tan da ulaşabilirsiniz.</p><a class="button btn-primary" style="display:block;text-align:center" target="_blank" rel="noopener" href="https://wa.me/'+PHONE+'?text='+encodeURIComponent("Zeytin siparişim hakkında yazıyorum")+'">WhatsApp’tan yaz</a>';form.scrollIntoView({behavior:"smooth",block:"start"});})
+    .then(function(r){if(!r.ok)throw new Error("http "+r.status);if(window.fbq){window.fbq("track","Purchase",{value:amount,currency:"TRY"});}return loadReceipt(0);})
+    .then(function(receipt){
+      var shown=receipt||{};
+      var orderNo=shown.siparis_no==null?"Sipariş numarası hazırlanıyor":"#"+shown.siparis_no;
+      var fullAddress=(shown.sehir_ilce||payload.sehir_ilce)+" · "+(shown.adres||payload.adres);
+      var customer=shown.ad_soyad||payload.ad_soyad;
+      var phone=shown.telefon||payload.telefon;
+      var product=shown.urun||payload.urun;
+      var total=shown.toplam_tutar||payload.toplam_tutar;
+      var paymentText=shown.odeme_sekli||payload.odeme_sekli;
+      var numberNotice=shown.siparis_no==null?'<p style="color:#805500;margin:0 0 12px">Sipariş numarası şu anda yüklenemedi. Siparişiniz alındı; WhatsApp’tan bize ulaşabilirsiniz.</p>':"";
+      form.innerHTML='<section style="padding:18px;border:1px solid #d7e6d8;border-radius:12px;background:#f7fbf7;text-align:left"><h2 style="text-align:center;margin:0 0 8px;color:#245b2a">Siparişiniz alındı</h2><p style="text-align:center;font-size:18px;margin:0 0 16px"><strong>Sipariş numaranız: '+escapeHtml(orderNo)+'</strong></p>'+numberNotice+'<div style="line-height:1.6"><p style="margin:6px 0"><strong>Ad Soyad:</strong> '+escapeHtml(customer)+'</p><p style="margin:6px 0"><strong>Telefon:</strong> '+escapeHtml(phone)+'</p><p style="margin:6px 0"><strong>Adres:</strong> '+escapeHtml(fullAddress)+'</p><p style="margin:6px 0"><strong>Ürün:</strong> '+escapeHtml(product)+'</p><p style="margin:6px 0"><strong>Tutar:</strong> '+escapeHtml(total)+' TL · '+escapeHtml(paymentText)+'</p></div><p style="margin:14px 0 8px;text-align:center">Sipariş bilgileriniz bize ulaştı.</p><a class="button btn-primary" style="display:block;text-align:center" target="_blank" rel="noopener" href="https://wa.me/'+PHONE+'?text='+encodeURIComponent("Zeytin siparişim hakkında yazıyorum")+'">WhatsApp’tan yaz</a></section>';
+      form.scrollIntoView({behavior:"smooth",block:"start"});
+    })
     .catch(function(){btn.disabled=false;btn.textContent="SİPARİŞİ ONAYLA";error.textContent="Sipariş gönderilemedi. Lütfen tekrar deneyin veya WhatsApp’tan bize ulaşın.";});
   });
 })();
